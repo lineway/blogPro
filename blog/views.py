@@ -27,13 +27,7 @@ def detail(request, pk):
         'comment_list': comment_list,
     }
     return render(request, 'blog/detail.html', context=context)
-
-
-def archives(request, year, month):
-    post_list = Post.objects.filter(created_time__year=year,
-    created_time__month=month).order_by('-created_time')
-    return render(request, 'blog/index.html', context={"post_list": post_list})
-
+    
 
 class ArchiveView(ListView):
     model = Post
