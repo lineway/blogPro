@@ -1,3 +1,5 @@
+import markdown
+from django.utils.html import strip_tags
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -48,7 +50,7 @@ class Post(models.Model):
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
             ])
-            self.excerpt = strip_tags(md.onvert(self.body))[:54]
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
         super(Post, self).save(*args, **kwargs)
 
         class Meta:
